@@ -8,7 +8,14 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title_attribute( 'before=<h1 class="entry-title">  &after=</h1>' ); ?>
+		<?php the_title( '<h1 class="entry-title cosparell-page-title">', '</h1>' ); ?>
+		<!-- For applying featured Image -->
+		<?php if ( has_post_thumbnail( ) )
+		{
+			the_post_thumbnail( );
+
+		}
+		?>
 			<?php if ( 'post' == get_post_type() ) : ?>
 			
 			<div class="head-post">
@@ -38,6 +45,11 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
+	<footer class="entry-footer page-entry-footer clear">
+		<ul>
+			<!-- Edit Post -->
+			<li><?php edit_post_link( __( 'Edit', 'cosparell' ), '<span class="edit-link">', '</span>' ); ?></li>
+		</ul>
+	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->

@@ -482,6 +482,10 @@ a:hover, a:focus, a:active {
   display: block;
 }
 
+#menu-primary .menu-item:hover .sub-menu {
+	display: inline-block;
+}
+
 /* expanded nav menu : windows>tota*/
 @media (min-width: 62.5rem) {
   /* line 46, sass/custom/navigation/_menus.scss */
@@ -757,10 +761,18 @@ a:hover, a:focus, a:active {
   margin: 1.5em 0 0;
 }
 
+.page-entry-footer ul {
+	margin-left: -15px;
+}
+
 /* line 25, sass/site/primary/_posts-and-pages.scss */
 .page-links {
   clear: both;
   margin: 0 0 1.5em;
+}
+
+.cosparell-page-title {
+	font-size: 2em;
 }
 
 /*--------------------------------------------------------------

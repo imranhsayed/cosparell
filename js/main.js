@@ -9,7 +9,6 @@
 			this.animateSearchBox();
 		},
 
-
 		createMainSlider: function(){
 			var cosparellSlider = $( '#cosparell-slider' );
 			if ( cosparellSlider.length ) {
@@ -67,9 +66,9 @@
 		}
 
 
-	};	
+	};
 
 
-	window.cosparell.init();	
+	window.cosparell.init();
 
 })(jQuery);
