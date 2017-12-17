@@ -1028,11 +1028,10 @@ h6 {
 }
 
 /* line 59, sass/custom/_custom_styles.scss */
-.site-header, .cosparell-site-logo {
+.site-header {
   max-width: 108.14818592rem;
   margin: 0 auto 1.618rem auto;
   background-color: #ffffff;
-  border: 0.0625rem solid #e8e0da;
   box-shadow: inset 0 0.125rem 0.3125rem rgba(194, 188, 184, 0.1);
   color: #383838;
 }
@@ -1073,7 +1072,7 @@ h6 {
 /* line 93, sass/custom/_custom_styles.scss */
 .site-content {
   max-width: 108.14818592rem;
-  margin: 1.618rem auto 0 auto;
+  margin: 2.618rem auto 0 auto;
 }
 
 /* line 102, sass/custom/_custom_styles.scss */
@@ -1556,9 +1555,7 @@ input.search-field {
 .header-icons {
   text-align: right;
   max-width: 108.14818592rem;
-  background: #666666;
   min-height: 37px;
-  margin: 0.809rem auto 0 auto;
   background-color: #ffffff;
   border: 0.0625rem solid #e8e0da;
   box-shadow: inset 0 0.125rem 0.3125rem rgba(194, 188, 184, 0.1);
@@ -1678,16 +1675,22 @@ input.search-field {
 	text-align: center;
 	background: #E6E7E9;
 }
+
 .cosparell-site-logo a {
 	display: block;
+}
+
+.cosparell-site-logo p {
+	padding: 1em;
 }
 
 /*--------------------------------------------------------------
 16.0 Slick Slider Style
 --------------------------------------------------------------*/
 #cosparell-slider {
-	min-width: 108.14818592rem;
+	max-width: 108.14818592rem;
 	text-align: center;
+	margin: 0 auto;
 }
 
 #cosparell-slider img{
@@ -1697,7 +1700,7 @@ input.search-field {
 .cosparell-slide-content {
 	position: absolute;
 	background: rgba(0,0,0,0.5);
-	width: 67em;
+	width: 100%;
 	bottom: 0em;
 	display: inline-block;
 }
@@ -1709,6 +1712,20 @@ input.search-field {
 /* Slider Dots */
 .slick-dots li button:before {
 	font-size: 15px;
+}
+
+/* Media Query */
+@media ( max-width: 37.5rem ) {
+	.slide-title {
+		font-size: 1.25em;
+		line-height: 1em;
+	}
+
+	.slide-description {
+		font-size: 0.75em;
+		line-height: 0.75em;
+		margin-bottom: 1em;
+	}
 }
 
 /*--------------------------------------------------------------

@@ -130,21 +130,10 @@ function cosparell_setup() {
 		'default-image' => '',
 	) ) );
 
-	add_theme_support( 'custom-header', apply_filters( 'cosparell_custom_header_args', array(
-		'default-image'          => '',
-		'default-text-color'     => '000000',
-		'width'                  => 1000,
-		'height'                 => 250,
-		'flex-height'            => true,
-		'wp-head-callback'       => 'cosparell_header_style',
-	) ) );
-
 	//registering image size of side-thumb
 	add_image_size( 'cosparell-side-thumb',74,74 );
 
 	add_editor_style( array( 'editor-style.css', cosparell_main_font_url() ) );
-
-
 
 }
 endif; // cosparell_setup
@@ -226,8 +215,3 @@ foreach ( $cosparell_depedencies as $path ) {
 }
 
 do_action( 'cosparell_after' );
-
-
-
-
-

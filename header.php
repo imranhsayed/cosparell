@@ -21,8 +21,11 @@
 <body <?php body_class(); ?>>
 
 <div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
 	<div class="cosparell-site-logo"><?php cosparell_site_logo(); ?></div>
-
+	<div class="site-branding">
+		<?php cosparell_site_branding(); ?>
+	</div><!-- .site-branding -->
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'cosparell' ); ?></a>
 		<div class="header-icons clear">
 			<ul>
@@ -30,14 +33,12 @@
 					<?php get_search_form();  ?> <!-- picks up the searchform.php file -->
 				</li>
 				<li><span class="search-icon"></span></li>
-			</ul>	
-			
-		</div>
-	<header id="masthead" class="site-header" role="banner">
+			</ul>
 
-		<div class="site-branding">
-			<?php cosparell_site_branding(); ?>
-		</div><!-- .site-branding -->
+		</div>
+
+
+
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<h1 class="screen-reader-text">Main Navigation</h1>
@@ -45,6 +46,7 @@
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'depth' => 2 ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+
 	<!-- *including flexslider.php file from template -parts folder -->
 	<?php get_template_part( 'template-parts/banner' ); ?>
 	<div class="grid-container grid-container-padded">

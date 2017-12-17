@@ -1,30 +1,25 @@
 <?php
-////Default Pictures for Slider if user put any.
-//$cosparell_default_slider_settings = array(
-//				array(
-//						'image' 			=> get_template_directory_uri() . '/Images/slides/slide1.jpg',
-//						'title' 			=> __( 'The Supermodel' ,  'cosparell'),
-//						'link' 			=> '',
-//						'description' 	=> __( 'Latest Trends' ,  'cosparell' )
-//					),
-//				array(
-//						'image' 			=> get_template_directory_uri() . '/Images/slides/slide2.jpg',
-//						'title' 			=> __( 'Winter Season' ,  'cosparell'),
-//						'link' 			=> '',
-//						'description' 	=> __( 'Snow of winter' ,  'cosparell')
-//					),
-//				array(
-//						'image' 			=> get_template_directory_uri() . '/Images/slides/slide3.jpg',
-//						'title' 			=> __( 'The Perfect Couple' ,  'cosparell'),
-//						'link' 			=> '',
-//						'description' 	=> __( 'Newly Married Couple' ,  'cosparell')
-//					),
-//				);
-//
-//
-//
-//$cosparell_slider_settings = '';
-//
+//Default Pictures for Slider if user put any.
+$cosparell_default_slider_settings = array(
+				array(
+						'image' 			=> get_template_directory_uri() . '/Images/slides/slide1.jpg',
+						'title' 			=> __( 'The Supermodel' ,  'cosparell'),
+						'link' 			=> '',
+						'description' 	=> __( 'Latest Trends' ,  'cosparell' )
+					),
+				array(
+						'image' 			=> get_template_directory_uri() . '/Images/slides/slide2.jpg',
+						'title' 			=> __( 'Winter Season' ,  'cosparell'),
+						'link' 			=> '',
+						'description' 	=> __( 'Snow of winter' ,  'cosparell')
+					),
+				array(
+						'image' 			=> get_template_directory_uri() . '/Images/slides/slide3.jpg',
+						'title' 			=> __( 'The Perfect Couple' ,  'cosparell'),
+						'link' 			=> '',
+						'description' 	=> __( 'Newly Married Couple' ,  'cosparell')
+					),
+				);
 
 /**
  *  Used for showing the slider
@@ -32,6 +27,11 @@
  */
 
 $slides = get_theme_mod( 'cosparell_slides' );
+
+/* Assign the $slides value to default if the slider not set by the user in customizer. */
+if ( ! is_array( $slides ) || empty( $slides ) ) {
+	$slides = $cosparell_default_slider_settings;
+}
 
 if ( is_array( $slides ) && ( is_home() || is_front_page() ) ) : ?>
 
