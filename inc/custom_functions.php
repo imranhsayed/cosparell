@@ -14,6 +14,8 @@ function cosparell_StylesAndScripts()
 	wp_enqueue_style( 'slick_css' );
 	wp_register_style( 'slick_theme', COSPARELL_CSS_URI . '/slick-theme.css'  );
 	wp_enqueue_style( 'slick_theme' );
+	wp_register_style( 'mmenu_css', COSPARELL_CSS_URI . '/jquery.mmenu.css'  );
+	wp_enqueue_style( 'mmenu_css' );
 
 
 
@@ -21,14 +23,13 @@ function cosparell_StylesAndScripts()
 	// Note jquery listed as dependancy which prompts WP to load it
 	wp_enqueue_script( 'foundation_js', COSPARELL_JS_URI . '/foundation.min.js', array( 'jquery' ), '', true );
 	wp_enqueue_script( 'app_js', COSPARELL_JS_URI . '/app.js', array( 'jquery', 'foundation_js' ), '', true );
-	wp_enqueue_script( 'cosparell-navigation', get_template_directory_uri() . '/js/navigation-custom.js', array('jquery') );
 	wp_enqueue_script( 'cosparell-modernizr', get_template_directory_uri() . '/js/modernizr.js' );
 	wp_enqueue_script( 'cosparell-REM-unit-polyfill', get_template_directory_uri() . '/js/rem.js' ,false,false,true );
 
 	wp_enqueue_style( 'cosparell-style', get_stylesheet_uri() );
 
-	//commented out the default javascript so i can enqueue my own custom javascript
-	// wp_enqueue_script( 'cosparell-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'cosparell-navigation-jquery', get_template_directory_uri() . '/js/vendor/jquery.mmenu.js', array(), '', true );
+	wp_enqueue_script( 'cosparell-navigation', get_template_directory_uri() . '/js/vendor/navigation.js', array( 'cosparell-navigation-jquery' ), '', true );
 
 	wp_enqueue_script( 'cosparell-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 

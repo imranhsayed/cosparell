@@ -150,6 +150,10 @@ a img {
   border: 0;
 }
 
+.display {
+	display: none;
+}
+
 /*--------------------------------------------------------------
 CUSTOM VARS AND MIXINS
 --------------------------------------------------------------*/
@@ -473,17 +477,39 @@ a:hover, a:focus, a:active {
 }
 /* line 30, sass/custom/navigation/_menus.scss */
 .main-navigation ul li ul {
-  display: none;
-  padding: 0;
-  margin: 0;
+	display: none;
+	padding: 0;
+	margin: 0;
+}
+
+#site-navigation #menu-primary > li > ul,
+#site-navigation #menu-primary > li > ul > li > ul {
+	display: none;
+}
+
+#site-navigation #menu-primary > li > ul > li > ul {
+	position: absolute;
+	left: 155px;
+	top: 0px;
+}
+
+#site-navigation #menu-primary > li:hover > ul,
+#site-navigation #menu-primary > li > ul > li:hover > ul {
+	display: block;
 }
 /* line 36, sass/custom/navigation/_menus.scss */
-.main-navigation ul li ul.childopen {
-  display: block;
-}
+/*.menu-primary-container > ul li a:hover > ul {*/
+	/*display: block;*/
+/*}*/
 
 #menu-primary .menu-item:hover .sub-menu {
 	display: inline-block;
+}
+
+@media (max-width: 62.5rem) {
+	.menu-primary-container {
+		display: none;
+	}
 }
 
 /* expanded nav menu : windows>tota*/
@@ -559,7 +585,6 @@ a:hover, a:focus, a:active {
   /* line 101, sass/custom/navigation/_menus.scss */
   .main-navigation ul {
     clear: left;
-    display: none;
     /* collapsed nav child menu */
   }
   /* line 104, sass/custom/navigation/_menus.scss */
@@ -576,7 +601,6 @@ a:hover, a:focus, a:active {
   /* line 273, sass/custom/_custom_vars_mixins.scss */
   .main-navigation ul li a:hover {
     border-bottom-color: transparent;
-    background-color: #fdfcfc;
   }
   /* line 116, sass/custom/navigation/_menus.scss */
   .main-navigation ul ul {
@@ -1689,11 +1713,12 @@ input.search-field {
 }
 
 .cosparell-site-logo a {
-	display: block;
+	display: inline-block;
 }
 
 .cosparell-site-logo p {
 	padding: 1em;
+	display: block;
 }
 
 /*--------------------------------------------------------------

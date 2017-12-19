@@ -8,7 +8,6 @@ License:
 2-Slickslider: Slickslider uses the license MIT ,GPLv2 and later.
 3-Font-Awesome: Licence (Font: SIL OFL 1.1, CSS: MIT License)
 	license link: http://fontawesome.io/license 
-4-OptionTree: uses GNU Licence.
 
 Boot_strap:
 The framework used in this theme is underscore theme.

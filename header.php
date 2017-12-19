@@ -26,7 +26,8 @@
 	<div class="site-branding">
 		<?php cosparell_site_branding(); ?>
 	</div><!-- .site-branding -->
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'cosparell' ); ?></a>
+<!--		<a id="primary-nav-button" class="canis-mobile-nav-button menu-toggle" href="#site-navigation">--><?php //esc_html_e( 'Mobile Menu' , 'canis' ); ?><!--</a>-->
+		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'cosparell' ); ?></a>
 		<div class="header-icons clear">
 			<ul>
 				<li>
@@ -43,7 +44,16 @@
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<h1 class="screen-reader-text">Main Navigation</h1>
 			<div class="navicon closed"><i class="fa fa-navicon"></i></div>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'depth' => 2 ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'depth' => 3 ) ); ?>
+			<?php
+			wp_nav_menu( array(
+				'theme_location' => 'primary',
+				'menu_id'        => 'primary-menu',
+				'menu_class'     => 'primary-menu menu',
+				'container_class' => 'cosparell-mobile-menu',
+				'depth'          => 3,
+			) );
+			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
