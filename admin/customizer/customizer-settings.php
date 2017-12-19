@@ -93,7 +93,7 @@ $wp_customize->add_control(
 );
 
 // Slider Settings.
-require_once get_template_directory() . '/temp/customizer-slider.php';
+require_once get_template_directory() . '/admin/customizer/customizer-slider.php';
 
 //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
 $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
