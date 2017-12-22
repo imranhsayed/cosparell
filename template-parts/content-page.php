@@ -4,16 +4,16 @@
  *
  * @package cosparell
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title cosparell-page-title">', '</h1>' ); ?>
 		<!-- For applying featured Image -->
-		<?php if ( has_post_thumbnail( ) )
-		{
-			the_post_thumbnail( );
-
+		<?php
+		if ( has_post_thumbnail() ) {
+			the_post_thumbnail();
 		}
 		?>
 			<?php if ( 'post' == get_post_type() ) : ?>

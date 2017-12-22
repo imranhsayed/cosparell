@@ -1,7 +1,10 @@
 <?php
 /**
+ * Template used to Display Post Content
+ *
  * @package cosparell
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -28,31 +31,27 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 	<!-- For applying featured Image -->
-	<?php if ( has_post_thumbnail( ) )
-		{
-			the_post_thumbnail( );
+	<?php
+	if ( has_post_thumbnail() ) {
+		the_post_thumbnail();
+		} else {
+			// To display the default featured image in posts.
+			$img_url = esc_url( get_template_directory_uri() . '/images/default.png' );
 
-		}
-		else
-			{ 
-				//To display the default featured image in posts
-				$img_url = esc_url(get_template_directory_uri() . '/images/default.png');
-
-				echo "<img src={$img_url} >";
-			} 
-		
+			echo "<img src={$img_url} >";
+			}
 	?>
 	<!-- To display only few lines of the Post -->
 				<?php the_excerpt(); ?>
 
 	<div class="entry-content">
-		<!--<?php
-			/* translators: %s: Name of current post */
+		<?php
 			the_content( sprintf(
+				/* translators: %s: Name of current post */
 				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'cosparell' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
-		?> -->
+		?>
 
 		<?php
 			wp_link_pages( array(

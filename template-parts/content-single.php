@@ -1,13 +1,16 @@
 <?php
 /**
+ * Template for displaying the content of a single post
+ *
  * @package cosparell
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title">
-			<?php the_title_attribute( ); ?>
+			<?php the_title_attribute(); ?>
 		</h1>
 
 			<?php if ( 'post' == get_post_type() ) : ?>
@@ -29,19 +32,15 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 	<!-- For applying featured Image -->
-	<?php if ( has_post_thumbnail( ) )
-		{
-			the_post_thumbnail( );
+	<?php
+	if ( has_post_thumbnail() ) {
+			the_post_thumbnail();
+		} else {
+			// To display the default featured image in posts.
+			$img_url = esc_url( get_template_directory_uri() . '/images/default.png' );
 
-		}
-		else
-			{ 
-				//To display the default featured image in posts
-				$img_url = esc_url(get_template_directory_uri() . '/images/default.png');
-
-				echo "<img src={$img_url} >";
-			} 
-		
+			echo "<img src={$img_url} >";
+			}
 	?>
 
 	<div class="entry-content">
@@ -54,5 +53,4 @@
 		?>
 	</div><!-- .entry-content -->
 
-	
 </article><!-- #post-## -->

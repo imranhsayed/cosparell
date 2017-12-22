@@ -1,122 +1,116 @@
 <?php
 /**
  * Would generate the widget for recent post.
- * Though wordpress already has recent post widget available by default, 
+ * Though wordpress already has recent post widget available by default,
  * this widget do just a little extra by showing featured images as well
  *
  * @package cosparell
- * @since Supenova 1.0.1
  */
 
-add_action('widgets_init', 'cosparell_register_recent_posts' );
+/**
+ * Class cosparell_recent_posts
+ */
+class Cosparell_Recent_Posts extends WP_Widget {
 
-
-function cosparell_register_recent_posts()
-{
-//	register_widget( 'cosparell_recent_posts' );
-}
-//function register_cosparell_recent_posts()
-
-
-class cosparell_recent_posts extends WP_Widget{
-
+	/**
+	 * Cosparell_recent_posts constructor.
+	 */
 	function __construct() {
 
 	}
 
-	function cosparell_recent_post(){
-			
-			$widget_opts = array(
+	/**
+	 * Cosparell Recent Post
+	 */
+	function cosparell_recent_post() {
 
-				'classname' => 'cosparell',
+		$widget_opts = array(
 
-				'description' => __('This widget will show recent posts with date and featured image', 'cosparell'),
-			
+			'classname' => 'cosparell',
+
+			'description' => __( 'This widget will show recent posts with date and featured image', 'cosparell' ),
+
+		);
+
+		$control_opts = array(
+
+			'width' => 250,
+
+			'height' => 350,
+
+			'id_base' => 'cosparell_recentposts',
+
+		);
+
+		$this->WP_Widget(
+			'cosparell_recentposts',
+		 __( 'Recent Posts cosparell', 'cosparell' ),
+		  $widget_opts, $control_opts
 			);
-			
-
-
-			$control_opts = array( 
-
-				'width' => 250,
-
-				'height' => 350,
-
-				'id_base' => 'cosparell_recentposts'
-
-			 );
-						
-			$this->WP_Widget('cosparell_recentposts',
-
-			 __('Recent Posts cosparell', 'cosparell'),
-
-			  $widget_opts, $control_opts );			
 		}
-		//function cosparell_recent_posts()
-		
 
+	/**
+	 * Widget
+	 *
+	 * @param {array} $arg Args.
+	 * @param {array} $instance Instance.
+	 */
+	function widget( $arg, $instance ) {
+		extract( $arg, EXTR_SKIP );
 
-	function widget($arg, $instance)
-	{
-		extract($arg, EXTR_SKIP);
-		
 		/* Our variables from the widget settings. */
-		
-		$title = ( isset($instance['title']) )  ?  apply_filters('widget_title', $instance['title'] )  : __( 'Recent posts', 'cosparell' );
 
-		$number = ( isset($instance['number']) ) ? $instance['number'] : '';
+		$title = ( isset( $instance['title'] ) ) ? apply_filters( 'widget_title', $instance['title'] ) : __( 'Recent posts', 'cosparell' );
 
-		echo $before_widget; 
-		echo $before_title. $title. $after_title; 
+		$number = ( isset( $instance['number'] ) ) ? $instance['number'] : '';
 
-			$recent_posts = new WP_Query(array(
+		echo $before_widget;
+		echo $before_title . $title . $after_title;
 
-				'showposts' => $number,
+			$recent_posts = new WP_Query(
+				array(
 
-			));
+					'showposts' => $number,
+
+				)
+				);
 
 		?>
-			
+
 	<div id="recent_posts" class="widget_recent_posts " >
 
 		<ul class="slides clear" >
 
-			<?php while($recent_posts->have_posts()): $recent_posts->the_post(); ?>	
+			<?php
+			while ( $recent_posts->have_posts() ) :
+$recent_posts->the_post();
+?>
 
-				<li>
+			<li>
+				<div class="aside-post-img ">
 
-					<div class="aside-post-img ">	
+					<?php
 
-			            <?php 	
+						if ( has_post_thumbnail() ) {
+						the_post_thumbnail( 'side-thumb' );
+						} else {
+						// To display the default image in aside recent posts.
+						$img_url = esc_url( get_template_directory_uri() . '/images/default.png' );
 
-		            		if( has_post_thumbnail() ) 
-		            		{
-		                		the_post_thumbnail('side-thumb');
-							}
+						echo "<img src={$img_url} >";
+						}
 
-							else
-							{ 
-								//To display the default image in aside recent posts
-								$img_url = esc_url(get_template_directory_uri() . '/images/default.png');
-
-								echo "<img src={$img_url} >";
-							} 
-
-						?>
+					?>
+				</div>
+					<div class="post-title-date ">
+						<a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+						<?php the_title_attribute(); ?>
+						</a></br>
+						<span><?php the_time( get_option( 'date_format' ) ); ?></span>
 					</div>
-				
-						<div class="post-title-date ">
-							<a href="<?php echo get_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php the_title_attribute(); ?>
-							</a></br>
-							<span><?php the_time( get_option('date_format') ); ?></span>
-						</div>
-						
-						
+			</li>
 
-				</li>	
-
-			<?php endwhile; ?>
+	<?php endwhile; ?>
 
 		<!-- to reset custom loop -->
 		<?php wp_reset_postdata(); ?>
@@ -124,22 +118,26 @@ class cosparell_recent_posts extends WP_Widget{
 
 		</ul><!-- .slides -->
 
-	</div><!-- #recent_posts --> 
+	</div><!-- #recent_posts -->
 
-        <!--OUTPUT ENDS -->
+		<!--OUTPUT ENDS -->
 
-        <?php echo $after_widget; ?>               
-        
+		<?php echo $after_widget; ?>
+
 		<?php
 
 		}
-		// function widget
 
-
-				
-	function update($new_instance, $old_instance)
-	{
-				$instance = $old_instance;
+	/**
+	 * Update Widget Data.
+	 *
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 *
+	 * @return array
+	 */
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
 
 		/* Strip tags for title and name to remove HTML (important for text inputs). */
 
@@ -149,46 +147,35 @@ class cosparell_recent_posts extends WP_Widget{
 
 		return $instance;
 
-	}	
+	}
 	// function update
+		// dashboard form
+	function form( $instance ) {
 
-
-
-		//dashboard form
-		
-	function form($instance)
-	{
-		
-		$defaults = array( 'title' =>'Recent posts', 'number' => 5);
+		$defaults = array(
+			'title' => 'Recent posts',
+			'number' => 5,
+		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-
-
-		//Widget Title: Text Input 
-		
+		// Widget Title: Text Input.
 		echo '<p>';
-                   
-                    echo '<label for="'.$this->get_field_id( 'title' ).'">'. __('Title:','cosparell').'</label>';
-                    
-                    echo '<input id="'.$this->get_field_id( 'title' ).'" name="'.$this->get_field_name( 'title' ).'" value="'.esc_attr($instance['title']).'" style="width:90%;" />';
-		
+
+					echo '<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title:', 'cosparell' ) . '</label>';
+
+					echo '<input id="' . $this->get_field_id( 'title' ) . '" name="' . $this->get_field_name( 'title' ) . '" value="' . esc_attr( $instance['title'] ) . '" style="width:90%;" />';
+
 		echo '</p>';
 
-
-		
-		//Number of posts
-		
+		// Number of posts
 		echo '<p>';
 
-                echo '<label for="'.$this->get_field_id( 'number' ).'">'. __('Number of posts to show:','cosparell').'</label>';
-                
-                echo '<input id="'.$this->get_field_id( 'number' ).'" name="'.$this->get_field_name( 'number' ).'" value="'.esc_attr($instance['number']).'" size="3" />';
-		
+				echo '<label for="' . $this->get_field_id( 'number' ) . '">' . __( 'Number of posts to show:', 'cosparell' ) . '</label>';
+
+				echo '<input id="' . $this->get_field_id( 'number' ) . '" name="' . $this->get_field_name( 'number' ) . '" value="' . esc_attr( $instance['number'] ) . '" size="3" />';
+
 		echo '</p>';
 
 		}
-		// function form
 	}
-	//class cosparell_recent_posts extends WP_Widget
-

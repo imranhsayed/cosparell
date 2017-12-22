@@ -6,6 +6,7 @@
  *
  * @package cosparell
  */
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -31,19 +32,15 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 	<!-- For applying featured Image -->
-	<?php if ( has_post_thumbnail( ) )
-		{
-			the_post_thumbnail( );
+	<?php
+	if ( has_post_thumbnail() ) {
+			the_post_thumbnail();
+		} else {
+			// To display the default featured image in posts.
+			$img_url = esc_url( get_template_directory_uri() . '/images/default.png' );
 
-		}
-		else
-			{ 
-				//To display the default featured image in posts
-				$img_url = esc_url(get_template_directory_uri() . '/images/default.png');
-
-				echo "<img src={$img_url} >";
-			} 
-		
+			echo "<img src={$img_url} >";
+			}
 	?>
 
 	<div class="entry-summary">
@@ -55,7 +52,7 @@
 			<!-- Edit Post -->
 			<li><?php edit_post_link( __( 'Edit', 'cosparell' ), '<span class="edit-link">', '</span>' ); ?></li>
 			<!-- Read More Tab -->
-			<li><span><a href="<?php the_permalink(); ?>"><?php _e('Read More' , 'cosparell' ) ?></a></span></li>
+			<li><span><a href="<?php the_permalink(); ?>"><?php esc_html_e( 'Read More', 'cosparell' ); ?></a></span></li>
 		</ul>
 	</footer><!-- .entry-footer -->
 

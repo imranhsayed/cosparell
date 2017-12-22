@@ -1,10 +1,16 @@
 <?php
+/**
+ * The header for our theme.
+ *
+ * Displays all of the <head> section and everything up till <div id="content">
+ *
+ * @package cosparell
+ */
 
-/* ==============================
-  Site title & Tagline
-  =============================== */
-
-//Hide tagline
+/**
+ * Site Title and Tagline.
+ * Hide Tagline.
+ */
 $wp_customize->add_setting( 'cosparell_hide_tagline', array(
 	'default'           => 0,
 	'capability'        => 'edit_theme_options',
@@ -31,14 +37,13 @@ $wp_customize->add_panel( 'cosparell_general_panel', array(
 	'title'          => esc_html__( 'General', 'cosparell' ),
 ) );
 
-/* ==============================
-  SIDEBAR POSITIONS
-  =============================== */
-
+/**
+ * Sidebar Position
+ */
 $wp_customize->add_section( 'cosparell_sidebar_position_section', array(
 	'title'       => esc_html__( 'Sidebar Position', 'cosparell' ),
 	'capability'  => 'edit_theme_options',
-	'description' => '', //Descriptive tooltip
+	'description' => '', // Descriptive tooltip.
 	'panel'       => 'cosparell_general_panel',
 ) );
 
@@ -59,24 +64,23 @@ $wp_customize->add_control(
 				'left'       => esc_html__( 'Left', 'cosparell' ),
 				'right'      => esc_html__( 'Right', 'cosparell' ),
 				'no_sidebar' => esc_html__( 'No Sidebar', 'cosparell' ),
-			)
+			),
 		)
 	)
 );
 
-/* ==============================
-  Footer Copyright Text
-  =============================== */
-
+/**
+ * Footer Copyright Text.
+ */
 $wp_customize->add_section( 'cosparell_copyright_text_section', array(
 	'title'       => esc_html__( 'Copyright Text', 'cosparell' ),
 	'capability'  => 'edit_theme_options',
-	'description' => esc_html__( 'Will override the footer copyright text', 'cosparell' ), //Descriptive tooltip
+	'description' => esc_html__( 'Will override the footer copyright text', 'cosparell' ), // Descriptive tooltip.
 	'panel'       => 'cosparell_general_panel',
 ) );
 
 
-//SPECIAL FONTS
+// SPECIAL FONTS.
 $wp_customize->add_setting( 'cosparell_copyright_text', array(
 	'default'           => '',
 	'capability'        => 'edit_theme_options',
@@ -95,9 +99,8 @@ $wp_customize->add_control(
 // Slider Settings.
 require_once get_template_directory() . '/admin/customizer/customizer-slider.php';
 
-//4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
+// 4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
 $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 $wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
 $wp_customize->remove_control( 'header_image' );
-// $wp_customize->remove_control('header_textcolor');

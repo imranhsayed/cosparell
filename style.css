@@ -2758,6 +2758,15 @@ aside h1 {
   width: 200px;
 }
 
+/* Continue Reading */
+.entry-content a.more-link {
+	display: none;
+}
+
+.entry-content figure {
+	display: none;
+}
+
 @media (max-width: 28.125rem) {
   /* line 153, sass/custom/_pages.scss */
   #respond form input {

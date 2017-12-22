@@ -1,6 +1,6 @@
 <?php
 /**
- * cosparell Theme Customizer
+ * Cosparell Theme Customizer
  *
  * @package cosparell
  */

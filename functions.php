@@ -1,6 +1,6 @@
 <?php
 /**
- * cosparell functions and definitions
+ * Cosparell functions and definitions.
  *
  * @package cosparell
  */
@@ -29,8 +29,6 @@ if ( ! defined( 'COSPARELL_IS_DEV' ) ) {
 
 do_action( 'cosparell_before' );
 
-
-
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -38,15 +36,11 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 800; /* pixels */
 }
 
-
-
 /**
  * Required: set 'cosparell_theme_mode' filter to true.
  */
-add_filter( 'cosparell_theme_mode', '__return_true' ); 
-add_filter( 'cosparell_show_pages', '__return_false' );//comment out this code to bring back Option tree settings
-
-
+add_filter( 'cosparell_theme_mode', '__return_true' );
+add_filter( 'cosparell_show_pages', '__return_false' );// Comment out this code to bring back Option tree settings.
 
 if ( ! function_exists( 'cosparell_setup' ) ) :
 
@@ -59,7 +53,7 @@ if ( ! function_exists( 'cosparell_setup' ) ) :
  */
 function cosparell_setup() {
 
-	/*
+	/**
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on cosparell, use a find and replace
@@ -84,11 +78,10 @@ function cosparell_setup() {
 	add_theme_support( 'title-tag' );
 
 	/*
-	 * Enable support for Post Thumbnails on posts and pages.
+	 * Enable support for Post Thumbnails on posts and pages for featured image.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//FOR FEATURED IMAGE
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
@@ -130,30 +123,33 @@ function cosparell_setup() {
 		'default-image' => '',
 	) ) );
 
-	//registering image size of side-thumb
-	add_image_size( 'cosparell-side-thumb',74,74 );
+	// Registering image size of side-thumb.
+	add_image_size( 'cosparell-side-thumb', 74, 74 );
 
 	add_editor_style( array( 'editor-style.css', cosparell_main_font_url() ) );
 
 }
-endif; // cosparell_setup
+endif; // Cosparell_setup.
+
 add_action( 'after_setup_theme', 'cosparell_setup' );
 
 if ( ! function_exists( 'cosparell_main_font_url' ) ) {
 	/**
 	 * Returns the main font url of the theme, we are returning it from a function to handle two things
 	 * one is to handle the http problems and the other is so that we can also load it to post editor.
+	 *
 	 * @return string font url
 	 */
 	function cosparell_main_font_url() {
 		/**
 		 * Use font url without http://, we do this because google font without https have
 		 * problem loading on websites with https.
+		 *
 		 * @var font_url
 		 */
 		$font_url = 'fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700';
 
-		return ( substr( site_url(), 0, 8 ) === 'https://') ? 'https://' . $font_url : 'http://' . $font_url;
+		return ( substr( site_url(), 0, 8 ) === 'https://' ) ? 'https://' . $font_url : 'http://' . $font_url;
 	}
 }
 
@@ -163,7 +159,8 @@ if ( ! function_exists( 'cosparell_main_font_url' ) ) {
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
 function cosparell_widgets_init() {
-	//To register sidebar widgets
+
+	// To register sidebar widgets.
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'cosparell' ),
 		'id'            => 'sidebar-1',
@@ -173,35 +170,39 @@ function cosparell_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
-	//To register footer widgets
+
+	// To register footer widgets.
 	register_sidebar( array(
 		'name'          => __( 'Footer Widgets', 'cosparell' ),
 		'id'            => 'footer-widgets',
-		'description'   => __('I will show at the footer', 'cosparell'),
+		'description'   => __( 'I will show at the footer', 'cosparell' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>',
 	) );
 
-
 }
 add_action( 'widgets_init', 'cosparell_widgets_init' );
 
-//Function to increase the font-size of Tag Widget
-add_filter('widget_tag_cloud_args','cosparell_set_tag_cloud_sizes');
-function cosparell_set_tag_cloud_sizes($args)
-{
+// Function to increase the font-size of Tag Widget.
+add_filter( 'widget_tag_cloud_args', 'cosparell_set_tag_cloud_sizes' );
+
+/**
+ * Set Tag Cloud Sizes
+ *
+ * @param {array} $args .
+ *
+ * @return mixed
+ */
+function cosparell_set_tag_cloud_sizes( $args ) {
 	$args['smallest'] = 12;
 	$args['largest'] = 19;
 
-	return $args; 
+	return $args;
 }
 
-
-/*==============================
-          FILE INCLUDES
-===============================*/
+/* File Includes */
 
 $cosparell_depedencies = apply_filters( 'cosparell_depedencies', array(
 	COSPARELL_TEMP_DIR . '/inc/*.php',

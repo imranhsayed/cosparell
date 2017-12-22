@@ -6,15 +6,16 @@
  *
  * @package cosparell
  */
+
 ?>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="footer-wrap">
 		<!-- //code for displaying footer widgets -->
-			<?php if( is_active_sidebar('Footer Widgets' )): ?>
+			<?php if ( is_active_sidebar( 'Footer Widgets' ) ) : ?>
 				
 				<div id="custom-footer" class="clear">
-					<?php dynamic_sidebar('Footer Widgets' ); ?>
+					<?php dynamic_sidebar( 'Footer Widgets' ); ?>
 				</div><!-- END #custom-footer -->
 
 			<?php endif; ?>
@@ -26,7 +27,7 @@
 					<li>
 						<span class="sep"> Supernova Themes </span>
 						<span class="sep"> | </span>
-						<span class="canis-copyright-text"><?php echo cosparell_copyright_text(); ?></span>
+						<span class="canis-copyright-text"><?php esc_html( cosparell_copyright_text() ); ?></span>
 					</li>
 				</ul>
 				<!-- ICONS -->
