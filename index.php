@@ -39,7 +39,6 @@ get_header(); ?>
 			<!-- to reset custom loop -->
 			<?php wp_reset_postdata(); ?>
 
-
 			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>

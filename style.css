@@ -1673,6 +1673,10 @@ input.search-field {
   display: none;
 }
 
+.search-box .cosparell-search-box{
+	font-size: 1em;
+}
+
 @media (max-width: 28.125rem) {
   /* line 79, sass/custom/_header_icons.scss */
   .header-icons ul li span {
@@ -1762,6 +1766,12 @@ input.search-field {
 		font-size: 0.75em;
 		line-height: 0.75em;
 		margin-bottom: 1em;
+	}
+}
+
+@media ( min-width: 62.5rem ) {
+	.cosparell-slide-content {
+		width: 99%;
 	}
 }
 
